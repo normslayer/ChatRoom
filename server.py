@@ -2,22 +2,21 @@ import socket
 
 def Main():
     host = "127.0.0.1"
-    port = 5001
+    port = 5000
 
-    s = socket.socket()
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.bind((host, port))
 
-    s.listen(1)
-    c, addr = s.accept()
-    print ("Connection from:", str(addr))
+    print("Server Started")
+
     while True:
-        data = c.recv(1024).decode('utf-8')
-        if not data:
-            break
-        print("From connected user:", data)
+        data, addr = s.recvfrom(1024)
+        data = data.decode('utf-8')
+        print("Message From: " + str(addr))
+        print("From Connected User:" + data)
         data = data.upper()
-        print("Sending:", data)
-        c.send(data.encode('utf-8'))
+        print("Sending:",data)
+        s.sendto(data.encode('utf-8'), addr)
     c.close()
 
 if __name__ == '__main__':
