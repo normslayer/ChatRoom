@@ -20,4 +20,5 @@ def Main():
     c.close()
 
 if __name__ == '__main__':
+    print(socket.gethostbyname(socket.gethostname()))
     Main()
