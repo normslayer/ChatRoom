@@ -17,5 +17,5 @@ def Main():
 
     s.close()
 
-if __name__ == '__main'__:
+if __name__ == '__main__':
     Main()
