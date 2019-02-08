@@ -16,7 +16,8 @@ def Main():
         data = data.decode('utf-8')
         if data == ":1001:":
             clients.append(addr)
-            s.sendto(":2002:".encode('utf-8'))
+            s.sendto(":2002:".encode('utf-8'), addr)
+            break
         print("Message From: " + str(addr))
         print("From Connected User:" + data)
         data = data.upper()
@@ -27,3 +28,4 @@ def Main():
 if __name__ == '__main__':
     print(socket.gethostbyname(socket.gethostname()))
     Main()
+    
