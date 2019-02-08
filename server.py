@@ -1,5 +1,7 @@
 import socket
 
+clients = []
+
 def Main():
     host = "127.0.0.1"
     port = 5000
@@ -12,6 +14,9 @@ def Main():
     while True:
         data, addr = s.recvfrom(1024)
         data = data.decode('utf-8')
+        if data == ":1001:":
+            clients.append(addr)
+            s.sendto(":2002:".encode('utf-8'))
         print("Message From: " + str(addr))
         print("From Connected User:" + data)
         data = data.upper()

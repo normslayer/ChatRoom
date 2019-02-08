@@ -9,6 +9,14 @@ def Main():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.bind((host,port))
 
+    while True:
+        serverAddress = input("What is the ip of the server?")
+        s.sendto(":1001:".encode('utf-8'),(serverAddress,5000))
+        data, addr = s.recvfrom(1024)
+        if data == ":2002:":
+            print("Connected to", addr)
+            #todo break here and move to the chating bit
+
     message = input("-->")
     while message != "q":
         s.sendto(message.encode('utf-8'),server)
