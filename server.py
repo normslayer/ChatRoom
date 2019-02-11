@@ -14,8 +14,8 @@ def Main():
     while True:
         data, addr = s.recvfrom(1024)
         data = data.decode('utf-8')
-        if data == ":1001:":
-            clients.append(addr)
+        if data[:6] == ":1001:":
+            clients.append([addr,data[:-6]])
             s.sendto(":2002:".encode('utf-8'), addr)
             break
         print("Message From: " + str(addr))
