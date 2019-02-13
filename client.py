@@ -12,9 +12,9 @@ def setup():
 
     while True:
         s.sendto((":1001:"+str(name)).encode('utf-8'),(serverip,5000))
-        time.sleep(0.5)
         data, addr = s.recvfrom(1024)
-        if data == ":2002":
+        data = data.decode('utf-8')
+        if data == ":2002:":
             print("Connected to ---", addr)
             chatroom(s, addr)
             break
